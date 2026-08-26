@@ -1,0 +1,270 @@
+{
+  "name": "My workflow 24",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -368,
+        -112
+      ],
+      "id": "1fc46e7e-1038-4c42-afff-8db9a83e17e8",
+      "name": "Schedule Trigger",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "8856401951",
+        "text": "=Silakan berdiri sejenak ⚠️",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -112
+      ],
+      "id": "32e8f586-b2ab-4160-91cb-d3faa007613b",
+      "name": "Send a text message",
+      "webhookId": "2cba3acc-3e9e-44d3-8fdd-0033a7726084",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -320,
+        192
+      ],
+      "id": "cb43776d-7392-4447-9dfd-7b7695c4f972",
+      "name": "Telegram Trigger",
+      "webhookId": "2265f95f-9024-48e8-acd9-e66419c7c7e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=# Role\nKamu adalah Admin Toko yang santai dan informatif. Tugas utama kamu adalah memberikan informasi stok, harga, dan rekomendasi barang berdasarkan data yang ada.\n\n# Rules\n1. **Sumber Data Mutlak**: Gunakan tools Google Sheets untuk mencari informasi stok, harga, dan detail barang. Dilarang keras mengarang angka harga atau status stok jika tidak ada di spreadsheet.\n2. **Hanya Balas Informasi Relevan**: Jawaban kamu hanya boleh berisi:\n   - Status stok (ada/habis/jumlah).\n   - Harga barang (sesuai data).\n   - Rekomendasi barang (hanya jika ditanya atau jika stok yang dicari kosong, rekomendasikan barang serupa yang ada di data).\n3. **Tanpa Basa-basi**: Jangan gunakan kalimat pembuka (halo, selamat siang), kalimat penutup (terima kasih, silakan diorder), atau kalimat follow-up (mau pesan berapa?, ada lagi?).\n4. **Bahasa Kasual**: Gunakan gaya bahasa santai/slang (contoh: \"harganya cuma 50rb bro\", \"stok aman\", \"kosong nih, tapi ada yang mirip ini harganya...\").\n5. **Jika Data Tidak Ada**: Jika barang tidak ditemukan di Google Sheets, cukup katakan bahwa barang tidak ada di daftar tanpa menawarkan bantuan tambahan atau basa-basi.\n\n# Response Format\n- Langsung informasikan stok/harga/rekomendasi.\n- Gunakan bahasa yang ringkas dan santai.\n- **DILARALANG KERAS** menggunakan kalimat penutup atau pertanyaan di akhir jawaban.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -96,
+        192
+      ],
+      "id": "a4bc4f60-4cb1-4e75-b396-df932d9896b7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        192
+      ],
+      "id": "f28c1954-cd3a-4f16-b68e-6f1d7115a569",
+      "name": "Send a text message1",
+      "webhookId": "2cba3acc-3e9e-44d3-8fdd-0033a7726084",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -96,
+        400
+      ],
+      "id": "867809b0-3b6d-4fa0-bf22-d87bd7ae0b88",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.6-terra",
+          "mode": "list",
+          "cachedResultName": "gpt-5.6-terra"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        400
+      ],
+      "id": "d4818c2e-dd07-4404-81d4-8dec64a5ff42",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DYLtENOn7eTSqJ1k",
+          "name": "Sumopod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4",
+          "mode": "list",
+          "cachedResultName": "UINSSC - n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 786707739,
+          "mode": "list",
+          "cachedResultName": "Data Produk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit#gid=786707739"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        400
+      ],
+      "id": "a29ed252-be3f-4330-b995-17bb87f4f9ec",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ssAnLURcpA3xOTd1",
+          "name": "Akun Fahmi BQ"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5380b709-e443-48ff-922b-88574944f146",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3336894e42a5aaca85f2acd21403d1e04fea0a5279685f9f40e02fec7db4c988"
+  },
+  "nodeGroups": [],
+  "id": "RfMjqa5h8n8MNnBp",
+  "tags": []
+}
