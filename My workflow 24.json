@@ -10,10 +10,10 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.5,
       "position": [
-        -736,
-        848
+        2816,
+        1776
       ],
-      "id": "e97936f6-2156-4d1e-85aa-c979a7998617",
+      "id": "de97aa19-a013-408c-b3a6-7a79fa4cebc6",
       "name": "Telegram Trigger1",
       "webhookId": "2265f95f-9024-48e8-acd9-e66419c7c7e8",
       "credentials": {
@@ -111,10 +111,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        -512,
-        848
+        3040,
+        1776
       ],
-      "id": "bee4fe67-b0b7-4f56-80ed-fa9884b57318",
+      "id": "d88b99a6-8aed-4a87-97b0-8b19083b84c9",
       "name": "Switch"
     },
     {
@@ -134,10 +134,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -288,
-        672
+        3264,
+        1600
       ],
-      "id": "dbb99a76-391d-4452-a723-74c00d672942",
+      "id": "3c28bdff-538f-4848-a8e3-8986445701a7",
       "name": "Edit Fields2"
     },
     {
@@ -149,10 +149,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -288,
-        848
+        3264,
+        1776
       ],
-      "id": "217300c2-6334-4a0b-b28e-2502117bbec5",
+      "id": "80f15a5b-171e-4eb3-995d-9743255fc64d",
       "name": "Get a file",
       "webhookId": "fdccb98e-29e1-4196-9697-272ccbc1757f",
       "credentials": {
@@ -177,10 +177,10 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        -64,
-        848
+        3488,
+        1776
       ],
-      "id": "ae28f723-5f8b-4698-b298-3213610887bd",
+      "id": "11aacac3-77a1-489e-9e5c-f894a918736c",
       "name": "Transcribe a recording",
       "credentials": {
         "googlePalmApi": {
@@ -198,10 +198,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -288,
-        1040
+        3264,
+        1968
       ],
-      "id": "4d35a77a-b2be-4093-b692-47a83d05cfb9",
+      "id": "f892aa50-8ca7-40dd-a2e8-e25c3e268ec3",
       "name": "Get a file1",
       "webhookId": "fdccb98e-29e1-4196-9697-272ccbc1757f",
       "credentials": {
@@ -227,10 +227,10 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        -64,
-        1040
+        3488,
+        1968
       ],
-      "id": "99ad1c70-6260-430d-91a0-bc9df439d629",
+      "id": "1ecc5687-c6f7-4827-839d-dc4f4b51dd2d",
       "name": "Analyze document",
       "credentials": {
         "googlePalmApi": {
@@ -256,10 +256,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        160,
-        944
+        3712,
+        1872
       ],
-      "id": "db1c0461-de40-48c9-8bf7-d07106187378",
+      "id": "4cec8ea8-c4af-4d22-a6ba-6f7d28ca3447",
       "name": "Edit Fields1"
     },
     {
@@ -273,10 +273,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -288,
-        1264
+        3264,
+        2192
       ],
-      "id": "eb59075c-4311-489f-8575-afb0f7ca9531",
+      "id": "770e8b9d-af82-4bdb-8813-0d3ac59ad7fd",
       "name": "Kirim Tipe Tidak Didukung",
       "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
       "credentials": {
@@ -298,19 +298,19 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        496,
-        816
+        4048,
+        1744
       ],
-      "id": "a22160c7-686e-4b4b-b628-6f32e1cbc335",
+      "id": "9952419a-9d58-43d1-b1b7-c38e560c043f",
       "name": "AI Agent1"
     },
     {
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-5.4",
+          "value": "gpt-5.6-terra",
           "mode": "list",
-          "cachedResultName": "gpt-5.4"
+          "cachedResultName": "gpt-5.6-terra"
         },
         "responsesApiEnabled": false,
         "options": {}
@@ -318,10 +318,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        256,
-        1056
+        3808,
+        1984
       ],
-      "id": "5e8061cc-4ec1-4b53-b37f-8c85b9e5dce7",
+      "id": "340bbcf4-501f-41c9-a89e-aeec20be83e7",
       "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
@@ -339,10 +339,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        384,
-        1056
+        3936,
+        1984
       ],
-      "id": "ba1968ab-b6eb-4ede-be71-60f8d107e077",
+      "id": "bed6b0ec-0170-4a74-9acf-d66996a3ae25",
       "name": "Simple Memory1"
     },
     {
@@ -353,10 +353,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        512,
-        1056
+        4064,
+        1984
       ],
-      "id": "7b7712b7-9e5d-4410-ac67-990acbc4a84c",
+      "id": "46c08895-6747-46cb-b780-135eee8b62da",
       "name": "Structured Output Parser"
     },
     {
@@ -367,22 +367,22 @@
           "mode": "list",
           "cachedResultName": "fahmifn.bq@gmail.com"
         },
-        "start": "={{ $fromAI('Start', 'Waktu mulai acara, ISO-8601 dengan offset +07:00', 'string') }}",
-        "end": "={{ $fromAI('End', 'Waktu selesai acara, ISO-8601 dengan offset +07:00', 'string') }}",
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
         "additionalFields": {
           "attendees": [],
-          "description": "={{ $fromAI('Description', 'Deskripsi acara', 'string') }}",
-          "location": "={{ $fromAI('Location', 'Lokasi acara', 'string') }}",
-          "summary": "={{ $fromAI('Summary', 'Nama atau judul acara', 'string') }}"
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "location": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Location', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
         }
       },
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        656,
-        1056
+        4208,
+        1984
       ],
-      "id": "c3cf0c82-06e2-4a90-a6f6-a44860b402bc",
+      "id": "892f1eac-1c83-4593-8b8a-2efbd6d1c535",
       "name": "Create an event in Google Calendar",
       "credentials": {
         "googleCalendarOAuth2Api": {
@@ -409,10 +409,10 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        784,
-        1056
+        4336,
+        1984
       ],
-      "id": "1b541721-047f-456a-be2d-8ce9d19b1709",
+      "id": "3ae656dd-09a9-41bf-a851-58f0cf9fe5e3",
       "name": "Get many events in Google Calendar",
       "credentials": {
         "googleCalendarOAuth2Api": {
@@ -442,10 +442,10 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        912,
-        1056
+        4464,
+        1984
       ],
-      "id": "c8e6086d-65ef-403d-9cdc-4e67ebc606a0",
+      "id": "38723b59-d5ad-4b99-bc77-e670d02e25f4",
       "name": "Update an event in Google Calendar",
       "credentials": {
         "googleCalendarOAuth2Api": {
@@ -469,10 +469,10 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1040,
-        1056
+        4592,
+        1984
       ],
-      "id": "5ac028d1-fb83-47d5-af06-485fcb9d3beb",
+      "id": "7f89e3fe-cb33-4599-8b7a-290d5a6bcfcb",
       "name": "Delete an event in Google Calendar",
       "credentials": {
         "googleCalendarOAuth2Api": {
@@ -488,9 +488,9 @@
             {
               "conditions": {
                 "options": {
-                  "caseSensitive": false,
+                  "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 3
                 },
                 "conditions": [
@@ -513,9 +513,9 @@
             {
               "conditions": {
                 "options": {
-                  "caseSensitive": false,
+                  "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 3
                 },
                 "conditions": [
@@ -538,9 +538,9 @@
             {
               "conditions": {
                 "options": {
-                  "caseSensitive": false,
+                  "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 3
                 },
                 "conditions": [
@@ -563,9 +563,9 @@
             {
               "conditions": {
                 "options": {
-                  "caseSensitive": false,
+                  "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 3
                 },
                 "conditions": [
@@ -594,11 +594,211 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        928,
-        816
+        4496,
+        1680
       ],
-      "id": "1e96588c-9b2c-4097-b05d-901a2c85a6d7",
+      "id": "ab4dbb46-a4ac-4db6-907a-06286fbf950f",
       "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4",
+          "mode": "list",
+          "cachedResultName": "UINSSC - n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 430624300,
+          "mode": "list",
+          "cachedResultName": "Agenda Saya",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit#gid=430624300"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama Acara": "={{ $json.output.summary }}",
+            "Tanggal": "={{ $json.output.start.toDateTime().format('yyyy-MM-dd') }}",
+            "Waktu Mulai": "={{ $json.output.start.toDateTime().format('HH:mm') }}",
+            "Waktu Selesai": "={{ $json.output.end.toDateTime().format('HH:mm') }}",
+            "Lokasi": "={{ $json.output.location }}",
+            "Deskripsi": "={{ $json.output.description }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama Acara",
+              "displayName": "Nama Acara",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tanggal",
+              "displayName": "Tanggal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Waktu Mulai",
+              "displayName": "Waktu Mulai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Waktu Selesai",
+              "displayName": "Waktu Selesai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lokasi",
+              "displayName": "Lokasi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deskripsi",
+              "displayName": "Deskripsi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4752,
+        1632
+      ],
+      "id": "2af969a9-55e4-4c1c-97a6-472c88746c80",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ssAnLURcpA3xOTd1",
+          "name": "Akun Fahmi BQ"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "={{ $('AI Agent1').item.json.output.message }}.\n\nAcara yang dibuat adalah : \n{{ $('AI Agent1').item.json.output.summary }}\n\nWaktu : \n{{ $('AI Agent1').item.json.output.start.toDateTime().format('HH:mm') }} WIB \n\nTempat : \n{{ $('AI Agent1').item.json.output.location }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4976,
+        1632
+      ],
+      "id": "f8820a6a-0be8-4f91-8ab8-28c719153443",
+      "name": "Created Info",
+      "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "=Data berhasil diubah, tapi di sheet belum soalnya code aghi ucak :(",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        5184,
+        1696
+      ],
+      "id": "d5e4574d-1e29-490f-ac4f-f4681c84b8fb",
+      "name": "Created Info1",
+      "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "=Data berhasil dihapus, tapi di sheet belum soalnya code aghi ucak :(",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        5408,
+        1728
+      ],
+      "id": "749e6e98-1a2a-4f56-a62a-b7cfb91659aa",
+      "name": "Created Info2",
+      "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "={{ $('AI Agent1').item.json.output.message }}') }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4976,
+        1792
+      ],
+      "id": "fc85e997-a583-4309-a5dc-81b87529be6a",
+      "name": "Created Info3",
+      "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
     }
   ],
   "connections": {
@@ -801,16 +1001,58 @@
     },
     "Switch1": {
       "main": [
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Created Info1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Created Info2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Created Info3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Created Info3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Created Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
   "pinData": {},
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "3336894e42a5aaca85f2acd21403d1e04fea0a5279685f9f40e02fec7db4c988"
   }
 }
