@@ -44,3 +44,21 @@ return [
     }
   }
 ];
+
+
+
+{
+  "type": "object",
+  "properties": {
+    "status":      { "type": "string", "enum": ["created", "updated", "deleted", "read", "need_info"] },
+    "summary":     { "type": "string" },
+    "start":       { "type": "string" },
+    "end":         { "type": "string" },
+    "location":    { "type": "string" },
+    "description": { "type": "string" },
+    "message":     { "type": "string" }
+  },
+  "required": ["status"]
+}
+
+
