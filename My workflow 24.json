@@ -1,52 +1,5 @@
 {
-  "name": "My workflow 24",
   "nodes": [
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "seconds",
-              "secondsInterval": 10
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.4,
-      "position": [
-        -368,
-        -112
-      ],
-      "id": "1fc46e7e-1038-4c42-afff-8db9a83e17e8",
-      "name": "Schedule Trigger",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "chatId": "8856401951",
-        "text": "=Silakan berdiri sejenak ⚠️",
-        "additionalFields": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        0,
-        -112
-      ],
-      "id": "32e8f586-b2ab-4160-91cb-d3faa007613b",
-      "name": "Send a text message",
-      "webhookId": "2cba3acc-3e9e-44d3-8fdd-0033a7726084",
-      "credentials": {
-        "telegramApi": {
-          "id": "R9FDr0Qypuo7ezGP",
-          "name": "Fahmi UINSSC"
-        }
-      },
-      "disabled": true
-    },
     {
       "parameters": {
         "updates": [
@@ -57,11 +10,11 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.5,
       "position": [
-        -320,
-        192
+        -736,
+        848
       ],
-      "id": "cb43776d-7392-4447-9dfd-7b7695c4f972",
-      "name": "Telegram Trigger",
+      "id": "e97936f6-2156-4d1e-85aa-c979a7998617",
+      "name": "Telegram Trigger1",
       "webhookId": "2265f95f-9024-48e8-acd9-e66419c7c7e8",
       "credentials": {
         "telegramApi": {
@@ -72,38 +25,136 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "={{ $json.message.text }}",
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b71c6919-d53e-429f-a2f1-9c6b1ff77e9c",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pesan text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "75154009-90fc-4a06-a6bf-0ca7c10cea8b",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pesan Suara"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "9a92da9a-01ce-477a-a199-2badde378f4f",
+                    "leftValue": "={{ $json.message.document.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pesan Dokumen"
+            }
+          ]
+        },
         "options": {
-          "systemMessage": "=# Role\nKamu adalah Admin Toko yang santai dan informatif. Tugas utama kamu adalah memberikan informasi stok, harga, dan rekomendasi barang berdasarkan data yang ada.\n\n# Rules\n1. **Sumber Data Mutlak**: Gunakan tools Google Sheets untuk mencari informasi stok, harga, dan detail barang. Dilarang keras mengarang angka harga atau status stok jika tidak ada di spreadsheet.\n2. **Hanya Balas Informasi Relevan**: Jawaban kamu hanya boleh berisi:\n   - Status stok (ada/habis/jumlah).\n   - Harga barang (sesuai data).\n   - Rekomendasi barang (hanya jika ditanya atau jika stok yang dicari kosong, rekomendasikan barang serupa yang ada di data).\n3. **Tanpa Basa-basi**: Jangan gunakan kalimat pembuka (halo, selamat siang), kalimat penutup (terima kasih, silakan diorder), atau kalimat follow-up (mau pesan berapa?, ada lagi?).\n4. **Bahasa Kasual**: Gunakan gaya bahasa santai/slang (contoh: \"harganya cuma 50rb bro\", \"stok aman\", \"kosong nih, tapi ada yang mirip ini harganya...\").\n5. **Jika Data Tidak Ada**: Jika barang tidak ditemukan di Google Sheets, cukup katakan bahwa barang tidak ada di daftar tanpa menawarkan bantuan tambahan atau basa-basi.\n\n# Response Format\n- Langsung informasikan stok/harga/rekomendasi.\n- Gunakan bahasa yang ringkas dan santai.\n- **DILARALANG KERAS** menggunakan kalimat penutup atau pertanyaan di akhir jawaban.\n"
+          "fallbackOutput": "extra"
         }
       },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
       "position": [
-        -96,
-        192
+        -512,
+        848
       ],
-      "id": "a4bc4f60-4cb1-4e75-b396-df932d9896b7",
-      "name": "AI Agent"
+      "id": "bee4fe67-b0b7-4f56-80ed-fa9884b57318",
+      "name": "Switch"
     },
     {
       "parameters": {
-        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-        "text": "={{ $json.output }}",
-        "additionalFields": {
-          "appendAttribution": false
-        }
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b641fc5c-6e1d-4ca6-88f6-7665ab7ad693",
+              "name": "message",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -288,
+        672
+      ],
+      "id": "dbb99a76-391d-4452-a723-74c00d672942",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        352,
-        192
+        -288,
+        848
       ],
-      "id": "f28c1954-cd3a-4f16-b68e-6f1d7115a569",
-      "name": "Send a text message1",
-      "webhookId": "2cba3acc-3e9e-44d3-8fdd-0033a7726084",
+      "id": "217300c2-6334-4a0b-b28e-2502117bbec5",
+      "name": "Get a file",
+      "webhookId": "fdccb98e-29e1-4196-9697-272ccbc1757f",
       "credentials": {
         "telegramApi": {
           "id": "R9FDr0Qypuo7ezGP",
@@ -113,158 +164,653 @@
     },
     {
       "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.message.chat.id }}"
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "inputType": "binary",
+        "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.4,
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
       "position": [
-        -96,
-        400
+        -64,
+        848
       ],
-      "id": "867809b0-3b6d-4fa0-bf22-d87bd7ae0b88",
-      "name": "Simple Memory"
+      "id": "ae28f723-5f8b-4698-b298-3213610887bd",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "umhnXZv6nIHifgSJ",
+          "name": "UINSSC 2026"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.document.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        1040
+      ],
+      "id": "4d35a77a-b2be-4093-b692-47a83d05cfb9",
+      "name": "Get a file1",
+      "webhookId": "fdccb98e-29e1-4196-9697-272ccbc1757f",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "document",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "Ekstrak informasi acara dari dokumen ini. Sebutkan: nama acara, tanggal, waktu mulai, waktu selesai, lokasi, dan deskripsi singkat. Jika ada informasi yang tidak tercantum di dokumen, tulis 'tidak disebutkan'. Jangan mengarang data.",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        1040
+      ],
+      "id": "99ad1c70-6260-430d-91a0-bc9df439d629",
+      "name": "Analyze document",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "umhnXZv6nIHifgSJ",
+          "name": "UINSSC 2026"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b641fc5c-6e1d-4ca6-88f6-7665ab7ad693",
+              "name": "message",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        160,
+        944
+      ],
+      "id": "db1c0461-de40-48c9-8bf7-d07106187378",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "=Maaf, tipe pesan ini belum didukung.\n\nSilakan kirim: teks, pesan suara, atau dokumen (PDF/DOCX).",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        1264
+      ],
+      "id": "eb59075c-4311-489f-8575-afb0f7ca9531",
+      "name": "Kirim Tipe Tidak Didukung",
+      "webhookId": "e57304a1-76a9-4790-9987-d661b2aa55e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "R9FDr0Qypuo7ezGP",
+          "name": "Fahmi UINSSC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# PERAN\nKamu adalah Asisten Penjadwalan Google Calendar. Kamu menangani operasi CRUD (Create, Read, Update, Delete) pada kalender pengguna secara akurat.\n\n# KONTEKS WAKTU\n- Waktu saat ini: {{ $now }}\n- Zona waktu: Asia/Jakarta (WIB, UTC+07:00)\n- SEMUA waktu yang kamu kirim ke tool WAJIB format ISO-8601 lengkap dengan offset, contoh: 2026-08-28T14:00:00+07:00\n- Dilarang menebak tanggal. Hitung waktu relatif (\"besok\", \"lusa\", \"Senin depan\", \"jam 2 siang\") secara presisi dari waktu saat ini.\n\n# TOOL YANG TERSEDIA\n- Create an event in Google Calendar -> membuat acara baru\n- Get many events in Google Calendar -> mencari/membaca acara (punya parameter After, Before, Search_Query)\n- Update an event in Google Calendar -> mengubah acara (butuh Event_ID)\n- Delete an event in Google Calendar -> menghapus acara (butuh Event_ID)\n\n# ALUR KERJA PER OPERASI\n\n## 1. CREATE\n- Field WAJIB: nama acara (summary), waktu mulai, lokasi, deskripsi.\n- Jika ada field wajib yang tidak disebutkan pengguna, JANGAN panggil tool. Balas dengan status \"need_info\" dan tanyakan field yang kurang di field message.\n- Jika waktu selesai tidak disebutkan, pakai durasi 60 menit.\n- WAJIB cek bentrok dulu: panggil Get many events dengan After/Before di rentang acara baru. Jika ada acara lain yang bertabrakan, tetap buat acaranya lalu sebutkan peringatan bentrok di field message.\n- Setelah tool sukses, balas status \"created\" dan isi semua field acara.\n\n## 2. READ\n- Panggil Get many events dengan After = awal rentang, Before = akhir rentang.\n  - \"hari ini\" -> After = hari ini 00:00:00+07:00, Before = hari ini 23:59:59+07:00\n  - \"minggu ini\" -> Senin 00:00 s.d. Minggu 23:59\n- Balas status \"read\". Isi array events secara kronologis (paling awal dulu). Jika kosong, kirim events sebagai array kosong dan jelaskan di message.\n- Jangan isi field summary/start/end di level atas untuk operasi READ, cukup array events.\n\n## 3. UPDATE\n- Langkah 1: panggil Get many events (pakai Search_Query dan/atau rentang waktu) untuk mendapatkan eventId acara target.\n- Langkah 2: jika ditemukan lebih dari satu acara yang cocok, JANGAN update. Balas status \"need_info\" dan minta pengguna memilih.\n- Langkah 3: panggil Update an event. PENTING: isi SEMUA field (Summary, Start, End, Location, Description) - untuk field yang tidak diubah, kirim ulang nilai LAMA dari hasil pencarian. Jika kamu mengirim string kosong, data lama akan terhapus.\n- Balas status \"updated\", isi nilai FINAL acara setelah diubah, dan sebutkan bagian mana yang berubah di field message.\n\n## 4. DELETE\n- Langkah 1: panggil Get many events untuk memastikan eventId yang tepat.\n- Langkah 2: jika ada lebih dari satu kandidat, balas status \"need_info\" dan minta konfirmasi spesifik.\n- Langkah 3: panggil Delete an event setelah target pasti.\n- Balas status \"deleted\" dan isi summary/start acara yang dihapus supaya pengguna tahu yang mana.\n\n# FORMAT OUTPUT\nOutput kamu HARUS mengikuti schema terstruktur yang disediakan.\n- status: created | updated | deleted | read | need_info | error\n- message: WAJIB selalu ada. Ini kalimat yang dibaca pengguna. Untuk need_info isi pertanyaannya, untuk error isi penjelasan masalahnya, untuk created/updated/deleted isi catatan tambahan (misal peringatan bentrok) atau kalimat singkat.\n- start / end: ISO-8601 dengan offset +07:00, bukan teks bebas.\n- event_id: isi untuk operasi update dan delete.\n- events: hanya untuk status \"read\".\n\n# GAYA BAHASA\nBahasa Indonesia, sopan, ringkas, profesional. Jangan bertele-tele."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        496,
+        816
+      ],
+      "id": "a22160c7-686e-4b4b-b628-6f32e1cbc335",
+      "name": "AI Agent1"
     },
     {
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-5.6-terra",
+          "value": "gpt-5.4",
           "mode": "list",
-          "cachedResultName": "gpt-5.6-terra"
+          "cachedResultName": "gpt-5.4"
         },
-        "builtInTools": {},
+        "responsesApiEnabled": false,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -240,
-        400
+        256,
+        1056
       ],
-      "id": "d4818c2e-dd07-4404-81d4-8dec64a5ff42",
-      "name": "OpenAI Chat Model",
+      "id": "5e8061cc-4ec1-4b53-b37f-8c85b9e5dce7",
+      "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "DYLtENOn7eTSqJ1k",
-          "name": "Sumopod"
+          "id": "bbHElroaVUO4z2gs",
+          "name": "Sumopod Agustus"
         }
       }
     },
     {
       "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4",
-          "mode": "list",
-          "cachedResultName": "UINSSC - n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 786707739,
-          "mode": "list",
-          "cachedResultName": "Data Produk",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bS9wJ6kEiZLnMlqEgwYz2vwf_GwMkksbTINxnk1HpY4/edit#gid=786707739"
-        },
-        "options": {}
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "contextWindowLength": 10
       },
-      "type": "n8n-nodes-base.googleSheetsTool",
-      "typeVersion": 4.7,
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
       "position": [
-        64,
-        400
+        384,
+        1056
       ],
-      "id": "a29ed252-be3f-4330-b995-17bb87f4f9ec",
-      "name": "Get row(s) in sheet in Google Sheets",
+      "id": "ba1968ab-b6eb-4ede-be71-60f8d107e077",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"string\",\n      \"enum\": [\"created\", \"updated\", \"deleted\", \"read\", \"need_info\", \"error\"],\n      \"description\": \"Hasil operasi yang dilakukan\"\n    },\n    \"message\": {\n      \"type\": \"string\",\n      \"description\": \"Kalimat yang dibaca pengguna. Wajib selalu diisi.\"\n    },\n    \"summary\": {\n      \"type\": \"string\",\n      \"description\": \"Nama acara\"\n    },\n    \"start\": {\n      \"type\": \"string\",\n      \"description\": \"Waktu mulai ISO-8601 dengan offset +07:00\"\n    },\n    \"end\": {\n      \"type\": \"string\",\n      \"description\": \"Waktu selesai ISO-8601 dengan offset +07:00\"\n    },\n    \"location\": {\n      \"type\": \"string\",\n      \"description\": \"Lokasi acara\"\n    },\n    \"description\": {\n      \"type\": \"string\",\n      \"description\": \"Deskripsi acara\"\n    },\n    \"event_id\": {\n      \"type\": \"string\",\n      \"description\": \"ID acara Google Calendar, diisi untuk update dan delete\"\n    },\n    \"events\": {\n      \"type\": \"array\",\n      \"description\": \"Daftar acara, hanya untuk status read\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"summary\": { \"type\": \"string\" },\n          \"start\": { \"type\": \"string\" },\n          \"end\": { \"type\": \"string\" },\n          \"location\": { \"type\": \"string\" },\n          \"event_id\": { \"type\": \"string\" }\n        },\n        \"required\": [\"summary\", \"start\"]\n      }\n    }\n  },\n  \"required\": [\"status\", \"message\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        1056
+      ],
+      "id": "7b7712b7-9e5d-4410-ac67-990acbc4a84c",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "fahmifn.bq@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fahmifn.bq@gmail.com"
+        },
+        "start": "={{ $fromAI('Start', 'Waktu mulai acara, ISO-8601 dengan offset +07:00', 'string') }}",
+        "end": "={{ $fromAI('End', 'Waktu selesai acara, ISO-8601 dengan offset +07:00', 'string') }}",
+        "additionalFields": {
+          "attendees": [],
+          "description": "={{ $fromAI('Description', 'Deskripsi acara', 'string') }}",
+          "location": "={{ $fromAI('Location', 'Lokasi acara', 'string') }}",
+          "summary": "={{ $fromAI('Summary', 'Nama atau judul acara', 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        1056
+      ],
+      "id": "c3cf0c82-06e2-4a90-a6f6-a44860b402bc",
+      "name": "Create an event in Google Calendar",
       "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "ssAnLURcpA3xOTd1",
-          "name": "Akun Fahmi BQ"
+        "googleCalendarOAuth2Api": {
+          "id": "dCKpGYIE141H6xj4",
+          "name": "Calendar Agustus N8N"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "fahmifn.bq@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fahmifn.bq@gmail.com"
+        },
+        "returnAll": true,
+        "options": {
+          "orderBy": "startTime",
+          "query": "={{ $fromAI('Search_Query', 'Kata kunci nama acara. Kosongkan jika ingin semua acara di rentang waktu tersebut.', 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        784,
+        1056
+      ],
+      "id": "1b541721-047f-456a-be2d-8ce9d19b1709",
+      "name": "Get many events in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "dCKpGYIE141H6xj4",
+          "name": "Calendar Agustus N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "fahmifn.bq@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fahmifn.bq@gmail.com"
+        },
+        "eventId": "={{ $fromAI('Event_ID', 'ID acara Google Calendar yang akan diubah', 'string') }}",
+        "updateFields": {
+          "description": "={{ $fromAI('Description', 'Deskripsi acara. Kirim ulang nilai lama jika tidak diubah.', 'string') }}",
+          "end": "={{ $fromAI('End', 'Waktu selesai ISO-8601 +07:00. Kirim ulang nilai lama jika tidak diubah.', 'string') }}",
+          "location": "={{ $fromAI('Location', 'Lokasi acara. Kirim ulang nilai lama jika tidak diubah.', 'string') }}",
+          "start": "={{ $fromAI('Start', 'Waktu mulai ISO-8601 +07:00. Kirim ulang nilai lama jika tidak diubah.', 'string') }}",
+          "summary": "={{ $fromAI('Summary', 'Nama acara. Kirim ulang nilai lama jika tidak diubah.', 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        912,
+        1056
+      ],
+      "id": "c8e6086d-65ef-403d-9cdc-4e67ebc606a0",
+      "name": "Update an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "dCKpGYIE141H6xj4",
+          "name": "Calendar Agustus N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "fahmifn.bq@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fahmifn.bq@gmail.com"
+        },
+        "eventId": "={{ $fromAI('Event_ID', 'ID acara Google Calendar yang akan dihapus', 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1040,
+        1056
+      ],
+      "id": "5ac028d1-fb83-47d5-af06-485fcb9d3beb",
+      "name": "Delete an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "dCKpGYIE141H6xj4",
+          "name": "Calendar Agustus N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "00279290-59e3-4662-ab99-f7d0a83276b5",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "created",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Create"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "6215e825-c0b2-43e3-834f-5b6704afbe4e",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "updated",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Update"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "efed757b-99df-4c2d-a911-ee792a82d868",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "deleted",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Delete"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3c1b7a44-2f7e-4c0a-9c11-7a2f5b6d9e01",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "read",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Read"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        816
+      ],
+      "id": "1e96588c-9b2c-4097-b05d-901a2c85a6d7",
+      "name": "Switch1"
     }
   ],
-  "pinData": {},
   "connections": {
-    "Schedule Trigger": {
+    "Telegram Trigger1": {
       "main": [
         [
           {
-            "node": "Send a text message",
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Telegram Trigger": {
+    "Switch": {
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Kirim Tipe Tidak Didukung",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "AI Agent": {
+    "Edit Fields2": {
       "main": [
         [
           {
-            "node": "Send a text message1",
+            "node": "AI Agent1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Simple Memory": {
-      "ai_memory": [
+    "Get a file": {
+      "main": [
         [
           {
-            "node": "AI Agent",
-            "type": "ai_memory",
+            "node": "Transcribe a recording",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenAI Chat Model": {
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file1": {
+      "main": [
+        [
+          {
+            "node": "Analyze document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze document": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "AI Agent1",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Get row(s) in sheet in Google Sheets": {
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event in Google Calendar": {
       "ai_tool": [
         [
           {
-            "node": "AI Agent",
+            "node": "AI Agent1",
             "type": "ai_tool",
             "index": 0
           }
         ]
       ]
+    },
+    "Get many events in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
     }
   },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1",
-    "binaryMode": "separate"
-  },
-  "versionId": "5380b709-e443-48ff-922b-88574944f146",
+  "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "3336894e42a5aaca85f2acd21403d1e04fea0a5279685f9f40e02fec7db4c988"
-  },
-  "nodeGroups": [],
-  "id": "RfMjqa5h8n8MNnBp",
-  "tags": []
+  }
 }
