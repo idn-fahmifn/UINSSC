@@ -50,15 +50,55 @@ return [
 {
   "type": "object",
   "properties": {
-    "status":      { "type": "string", "enum": ["created", "updated", "deleted", "read", "need_info"] },
-    "summary":     { "type": "string" },
-    "start":       { "type": "string" },
-    "end":         { "type": "string" },
-    "location":    { "type": "string" },
-    "description": { "type": "string" },
-    "message":     { "type": "string" }
+    "status": {
+      "type": "string",
+      "enum": ["created", "updated", "deleted", "read", "need_info", "error"],
+      "description": "Hasil operasi yang dilakukan"
+    },
+    "message": {
+      "type": "string",
+      "description": "Kalimat yang dibaca pengguna. Wajib selalu diisi."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Nama acara"
+    },
+    "start": {
+      "type": "string",
+      "description": "Waktu mulai ISO-8601 dengan offset +07:00"
+    },
+    "end": {
+      "type": "string",
+      "description": "Waktu selesai ISO-8601 dengan offset +07:00"
+    },
+    "location": {
+      "type": "string",
+      "description": "Lokasi acara"
+    },
+    "description": {
+      "type": "string",
+      "description": "Deskripsi acara"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "ID acara Google Calendar, diisi untuk update dan delete"
+    },
+    "events": {
+      "type": "array",
+      "description": "Daftar acara, hanya untuk status read",
+      "items": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "location": { "type": "string" },
+          "event_id": { "type": "string" }
+        },
+        "required": ["summary", "start"]
+      }
+    }
   },
-  "required": ["status"]
+  "required": ["status", "message"]
 }
-
 
