@@ -4,22 +4,31 @@ const rawOutput = $input.first().json.output
 // Parse string JSON menjadi objek JavaScript
 const parsedData = JSON.parse(rawOutput);
 
-// Fungsi untuk konversi ISO string ke format tanggal Indonesia
+// Fungsi untuk konversi ISO string ke format tanggal Indonesia (WIB)
 function formatTanggal(isoString) {
   const date = new Date(isoString);
-  const hari = new Intl.DateTimeFormat('id-ID', { weekday: 'long' }).format(date);
-  const tanggal = date.getDate();
-  const bulan = new Intl.DateTimeFormat('id-ID', { month: 'long' }).format(date); // 'long' huruf kecil
-  const tahun = date.getFullYear();
-  return `${hari}, ${tanggal} ${bulan} ${tahun}`;
+  const formatter = new Intl.DateTimeFormat('id-ID', {
+    timeZone: 'Asia/Jakarta',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  return formatter.format(date);
 }
 
 // Fungsi untuk konversi ISO string ke format jam WIB
 function formatJam(isoString) {
   const date = new Date(isoString);
-  const jam = String(date.getHours()).padStart(2, '0');
-  const menit = String(date.getMinutes()).padStart(2, '0');
-  return `${jam}.${menit} WIB`;
+  const formatter = new Intl.DateTimeFormat('id-ID', {
+    timeZone: 'Asia/Jakarta',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+  // Mengubah titik dua (10:00) menjadi titik (10.00) agar sesuai format WIB
+  const timeFormatted = formatter.format(date).replace(':', '.');
+  return `${timeFormatted} WIB`;
 }
 
 // Output untuk n8n
