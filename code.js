@@ -1,5 +1,5 @@
 // Mengambil string output dari item pertama
-const rawOutput = $("Switch1").first().json.output;
+const rawOutput = $input.first().json.output
 
 // Parse string JSON menjadi objek JavaScript
 const parsedData = JSON.parse(rawOutput);
